@@ -1,6 +1,11 @@
 import express, { Application, Request, Response } from 'express';
+import cors from 'cors';
 import dotenv from 'dotenv';
 import pool from './config/database';
+
+// Import routes
+import authRoutes from './routes/authRoutes';
+import userRoutes from './routes/userRoutes';
 
 dotenv.config();
 
@@ -8,6 +13,9 @@ const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || 'http://localhost:3000'
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -30,6 +38,10 @@ app.get('/health', async (req: Request, res: Response) => {
   }
 });
 
+// API Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+
 // API base endpoint
 app.get('/api', (req: Request, res: Response) => {
   res.json({
@@ -37,7 +49,15 @@ app.get('/api', (req: Request, res: Response) => {
     version: '1.0.0',
     endpoints: {
       health: '/health',
-      api: '/api'
+      auth: {
+        register: 'POST /api/auth/register',
+        login: 'POST /api/auth/login'
+      },
+      users: {
+        getProfile: 'GET /api/users/:id',
+        updateProfile: 'PUT /api/users/:id',
+        deleteProfile: 'DELETE /api/users/:id'
+      }
     }
   });
 });
