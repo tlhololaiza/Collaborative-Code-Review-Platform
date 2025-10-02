@@ -43,6 +43,26 @@ export const validateUpdateProfile = [
     .withMessage('Display picture must be a valid URL'),
 ];
 
+export const validateProject = [
+  body('name')
+    .trim()
+    .notEmpty()
+    .withMessage('Project name is required')
+    .isLength({ min: 3 })
+    .withMessage('Project name must be at least 3 characters long'),
+  body('description')
+    .optional()
+    .trim(),
+];
+
+export const validateAddMember = [
+  body('userId')
+    .notEmpty()
+    .withMessage('User ID is required')
+    .isUUID()
+    .withMessage('User ID must be a valid UUID'),
+];
+
 export const handleValidationErrors = (
   req: Request,
   res: Response,
