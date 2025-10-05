@@ -9,6 +9,7 @@ import {
   removeMember
 } from '../controllers/projectController';
 import { getSubmissionsByProject } from '../controllers/submissionController';
+import { getProjectStats } from '../controllers/statsController';
 import { authenticate } from '../middleware/auth';
 import validation from '../middleware/validation';
 
@@ -52,5 +53,11 @@ router.post(
 
 // DELETE /api/projects/:id/members/:userId - Remove a member from a project
 router.delete('/:id/members/:userId', removeMember);
+
+// GET /api/projects/:id/submissions - Get all submissions for a project
+router.get('/:id/submissions', getSubmissionsByProject);
+
+// GET /api/projects/:id/stats - Get project statistics
+router.get('/:id/stats', getProjectStats);
 
 export default router;

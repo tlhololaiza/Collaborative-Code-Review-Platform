@@ -84,3 +84,16 @@ export interface CreateCommentRequest {
   content: string;
   line_number?: number;
 }
+
+export interface Review {
+  id: string;
+  submission_id: string;
+  reviewer_id: string;
+  action: 'approved' | 'changes_requested';
+  comment?: string;
+  created_at: Date;
+}
+
+export interface ReviewRequest {
+  comment?: string;
+}
