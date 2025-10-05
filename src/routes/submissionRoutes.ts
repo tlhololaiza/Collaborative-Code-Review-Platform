@@ -9,6 +9,11 @@ import {
   addComment,
   getComments
 } from '../controllers/commentController';
+import {
+  approveSubmission,
+  requestChanges,
+  getReviewHistory
+} from '../controllers/reviewController';
 import { authenticate } from '../middleware/auth';
 import validation from '../middleware/validation';
 
@@ -38,5 +43,16 @@ router.put(
 
 // DELETE /api/submissions/:id - Delete a submission
 router.delete('/:id', deleteSubmission);
+
+// POST /api/submissions/:id/comments - Add a comment to a submission
+router.post(
+  '/:id/comments',
+  validation.validateComment,
+  validation.handleValidationErrors,
+  addComment
+);
+
+// GET /api/submissions/:id/comments - Get all comments for a submission
+router.get('/:id/comments', getComments);
 
 export default router;

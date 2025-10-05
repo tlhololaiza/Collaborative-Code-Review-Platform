@@ -122,6 +122,14 @@ export const validateUpdateComment = [
     .withMessage('is_resolved must be a boolean'),
 ];
 
+export const validateReview = [
+  body('comment')
+    .optional()
+    .trim()
+    .isLength({ max: 2000 })
+    .withMessage('Comment must not exceed 2000 characters'),
+];
+
 export const handleValidationErrors = (
   req: Request,
   res: Response,
@@ -148,5 +156,7 @@ export default {
   validateAddMember,
   validateSubmission,
   validateSubmissionStatus,
+  validateComment,
+  validateUpdateComment,
   handleValidationErrors
 };

@@ -63,6 +63,31 @@ app.get('/api', (req: Request, res: Response) => {
         getProfile: 'GET /api/users/:id',
         updateProfile: 'PUT /api/users/:id',
         deleteProfile: 'DELETE /api/users/:id'
+      },
+      projects: {
+        create: 'POST /api/projects',
+        list: 'GET /api/projects',
+        get: 'GET /api/projects/:id',
+        update: 'PUT /api/projects/:id',
+        delete: 'DELETE /api/projects/:id',
+        addMember: 'POST /api/projects/:id/members',
+        removeMember: 'DELETE /api/projects/:id/members/:userId',
+        submissions: 'GET /api/projects/:id/submissions'
+      },
+      submissions: {
+        create: 'POST /api/submissions',
+        get: 'GET /api/submissions/:id',
+        updateStatus: 'PUT /api/submissions/:id/status',
+        delete: 'DELETE /api/submissions/:id',
+        addComment: 'POST /api/submissions/:id/comments',
+        getComments: 'GET /api/submissions/:id/comments',
+        approve: 'POST /api/submissions/:id/approve',
+        requestChanges: 'POST /api/submissions/:id/request-changes',
+        reviewHistory: 'GET /api/submissions/:id/reviews'
+      },
+      comments: {
+        update: 'PUT /api/comments/:id',
+        delete: 'DELETE /api/comments/:id'
       }
     }
   });
