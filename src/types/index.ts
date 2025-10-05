@@ -68,3 +68,19 @@ export interface CreateSubmissionRequest {
   file_name?: string;
   language?: string;
 }
+
+export interface Comment {
+  id: string;
+  submission_id: string;
+  user_id: string;
+  content: string;
+  line_number?: number;
+  is_resolved: boolean;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface CreateCommentRequest {
+  content: string;
+  line_number?: number;
+}

@@ -5,8 +5,12 @@ import {
   updateSubmissionStatus,
   deleteSubmission
 } from '../controllers/submissionController';
+import {
+  addComment,
+  getComments
+} from '../controllers/commentController';
 import { authenticate } from '../middleware/auth';
-import * as validation from '../middleware/validation';
+import validation from '../middleware/validation';
 
 const router = Router();
 

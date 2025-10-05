@@ -97,6 +97,31 @@ export const validateSubmissionStatus = [
     .withMessage('Invalid status value'),
 ];
 
+export const validateComment = [
+  body('content')
+    .trim()
+    .notEmpty()
+    .withMessage('Comment content is required')
+    .isLength({ min: 1, max: 2000 })
+    .withMessage('Comment must be between 1 and 2000 characters'),
+  body('line_number')
+    .optional()
+    .isInt({ min: 1 })
+    .withMessage('Line number must be a positive integer'),
+];
+
+export const validateUpdateComment = [
+  body('content')
+    .optional()
+    .trim()
+    .isLength({ min: 1, max: 2000 })
+    .withMessage('Comment must be between 1 and 2000 characters'),
+  body('is_resolved')
+    .optional()
+    .isBoolean()
+    .withMessage('is_resolved must be a boolean'),
+];
+
 export const handleValidationErrors = (
   req: Request,
   res: Response,
@@ -121,5 +146,7 @@ export default {
   validateUpdateProfile,
   validateProject,
   validateAddMember,
+  validateSubmission,
+  validateSubmissionStatus,
   handleValidationErrors
 };
