@@ -60,7 +60,7 @@ DB_USER=postgres
 DB_PASSWORD=your_password_here
 
 # JWT Configuration
-JWT_SECRET=your_super_secret_jwt_key_change_this_in_production
+JWT_SECRET=your_super_secret_jwt_key
 JWT_EXPIRES_IN=7d
 
 # CORS Configuration
