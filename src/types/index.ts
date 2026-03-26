@@ -45,3 +45,42 @@ export interface JWTPayload {
   email: string;
   role: string;
 }
+
+export interface Submission {
+  id: string;
+  project_id: string;
+  submitter_id: string;
+  title: string;
+  description?: string;
+  code_content: string;
+  file_name?: string;
+  language?: string;
+  status: 'pending' | 'in_review' | 'approved' | 'changes_requested';
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface CreateSubmissionRequest {
+  project_id: string;
+  title: string;
+  description?: string;
+  code_content: string;
+  file_name?: string;
+  language?: string;
+}
+
+export interface Comment {
+  id: string;
+  submission_id: string;
+  user_id: string;
+  content: string;
+  line_number?: number;
+  is_resolved: boolean;
+  created_at: Date;
+  updated_at: Date;
+}
+
+export interface CreateCommentRequest {
+  content: string;
+  line_number?: number;
+}

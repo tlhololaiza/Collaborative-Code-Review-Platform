@@ -63,6 +63,65 @@ export const validateAddMember = [
     .withMessage('User ID must be a valid UUID'),
 ];
 
+export const validateSubmission = [
+  body('project_id')
+    .notEmpty()
+    .withMessage('Project ID is required')
+    .isUUID()
+    .withMessage('Project ID must be a valid UUID'),
+  body('title')
+    .trim()
+    .notEmpty()
+    .withMessage('Title is required')
+    .isLength({ min: 3, max: 255 })
+    .withMessage('Title must be between 3 and 255 characters'),
+  body('description')
+    .optional()
+    .trim(),
+  body('code_content')
+    .notEmpty()
+    .withMessage('Code content is required'),
+  body('file_name')
+    .optional()
+    .trim(),
+  body('language')
+    .optional()
+    .trim(),
+];
+
+export const validateSubmissionStatus = [
+  body('status')
+    .notEmpty()
+    .withMessage('Status is required')
+    .isIn(['pending', 'in_review', 'approved', 'changes_requested'])
+    .withMessage('Invalid status value'),
+];
+
+export const validateComment = [
+  body('content')
+    .trim()
+    .notEmpty()
+    .withMessage('Comment content is required')
+    .isLength({ min: 1, max: 2000 })
+    .withMessage('Comment must be between 1 and 2000 characters'),
+  body('line_number')
+    .optional()
+    .isInt({ min: 1 })
+    .withMessage('Line number must be a positive integer'),
+];
+
+export const validateUpdateComment = [
+  body('content')
+    .optional()
+    .trim()
+    .isLength({ min: 1, max: 2000 })
+    .withMessage('Comment must be between 1 and 2000 characters'),
+  body('is_resolved')
+    .optional()
+    .isBoolean()
+    .withMessage('is_resolved must be a boolean'),
+];
+
 export const handleValidationErrors = (
   req: Request,
   res: Response,
@@ -85,5 +144,9 @@ export default {
   validateRegistration,
   validateLogin,
   validateUpdateProfile,
+  validateProject,
+  validateAddMember,
+  validateSubmission,
+  validateSubmissionStatus,
   handleValidationErrors
 };

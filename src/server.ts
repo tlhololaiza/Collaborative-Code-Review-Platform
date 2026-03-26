@@ -7,6 +7,8 @@ import pool from './config/database';
 import authRoutes from './routes/authRoutes';
 import userRoutes from './routes/userRoutes';
 import projectRoutes from './routes/projectRoutes';
+import submissionRoutes from './routes/submissionRoutes';
+import commentRoutes from './routes/commentRoutes';
 
 dotenv.config();
 
@@ -43,6 +45,8 @@ app.get('/health', async (req: Request, res: Response) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/submissions', submissionRoutes);
+app.use('/api/comments', commentRoutes);
 
 // API base endpoint
 app.get('/api', (req: Request, res: Response) => {

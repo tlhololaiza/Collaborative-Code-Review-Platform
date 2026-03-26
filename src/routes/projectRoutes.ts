@@ -8,8 +8,9 @@ import {
   addMember,
   removeMember
 } from '../controllers/projectController';
+import { getSubmissionsByProject } from '../controllers/submissionController';
 import { authenticate } from '../middleware/auth';
-import * as validation from '../middleware/validation';
+import validation from '../middleware/validation';
 
 const router = Router();
 
